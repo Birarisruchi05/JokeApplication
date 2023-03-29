@@ -1,0 +1,38 @@
+using JokeApplication.Web;
+using JokeApplication.Web.Repository;
+using JokeApplication.Web.Repository.IService;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient<IJokeService, JokeService>();
+SD.JokeBaseAPI = builder.Configuration["ServiceURLs:JokeAPI"];
+
+builder.Services.AddScoped<IJokeService, JokeService>();
+builder.Services.AddControllersWithViews();
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

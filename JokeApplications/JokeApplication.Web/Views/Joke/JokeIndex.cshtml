@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Jokedto>
+
+<br />
+<br />
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-primary">Jokes List</h1>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Set Up
+                </th>
+                <th>
+                    Punch Line
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Type
+                    </td>
+                    <td>
+                        @item.SetUp
+                    </td>
+                    <td>
+                        @item.PunchLine
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
